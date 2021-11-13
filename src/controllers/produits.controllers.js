@@ -111,3 +111,27 @@ module.exports.deleteProduits = async (req, res, next) => {
         console.log(err);
     }
 }
+
+
+/**
+ * Get all produits par categorie
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
+module.exports.getProduitsParCateg = async (req, res, next) => {
+    const {id} = req.params;
+    if(!ObjectId.isValid(id)) return res.status(404).json({erreur : 'ID non reconnue'})
+
+    try{
+        await Produit.find({category : id}).then(docs => {
+            res.status(200).json({produis : docs});
+        }).catch(err => {
+            console.log(err);
+            res.status(400).json({erreur : err})
+        })
+    }catch(err){
+        console.log(err);
+    }
+
+}

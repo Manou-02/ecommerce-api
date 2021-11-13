@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const categoryRoutes = require('./src/routes/category.routes');
 const produitRoutes = require('./src/routes/Produit.routes');
 const userRoutes = require('./src/routes/user.routes');
+const commandeRoutes = require('./src/routes/commande.routes');
 
 
 
@@ -24,6 +25,7 @@ app.use('./public/uploads', express.static('./public/uploads'));
 app.use('/api/category', categoryRoutes);
 app.use('/api/produits', produitRoutes);
 app.use('/api/user', userRoutes);
+app.use('/api/commande', commandeRoutes);
 
 
 /**Connexion au DB */
