@@ -1,5 +1,6 @@
 const Commande = require('../models/commande');
 const ObjectId = require('mongoose').Types.ObjectId;
+const sendEmail = require('../../utils/email');
 
 /**
  * Get all commande
@@ -28,10 +29,12 @@ module.exports.getAllCommande = async (req, res, next) => {
  */
 module.exports.createCommande = async (req, res, next) => {
     const {client, panier} = req.body;
-
     try{
         await Commande.create({client, panier}).then(docs => {
-            res.status(200).json({commande : docs})
+            Commande.findOne({_id : docs._id}).populate('panier.ligneCommande.produit').then(data => {
+                sendEmail(client, panier);
+                res.status(200).json({commande : data})
+            })
         }).catch(err => {
             console.log(err);
             res.status(400).json({erreur : "erreur lors de la commande"})
