@@ -9,7 +9,7 @@ const commandeSchema = new mongoose.Schema({
             emailClient : String,
             adresse : {
                 type : {
-                    quarierClient : String,
+                    lotClient : String,
                     villeClient : String,
                     provinceClient : String,
                 }

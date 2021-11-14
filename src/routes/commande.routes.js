@@ -3,7 +3,7 @@ const { getAllCommande, getOneCommande, createCommande, updateCommade, deleteCom
 const routes = require('express').Router();
 
 routes.get('/', getAllCommande);
-routes.get('/:id', getOneCommande);
+//routes.get('/:id', getOneCommande);
 
 routes.post('/', createCommande);
 
@@ -14,7 +14,7 @@ routes.delete('/:id', deleteCommande);
 routes.get('/effectuer', getAllCommandeEffectuer);
 routes.get('/non-effectuer', getAllCommandeNonEffectuer);
 
-routes.patch('/to-effectuer', marquerCommeEffectuer);
+routes.patch('/to-effectuer/:id', marquerCommeEffectuer);
 
 
 module.exports = routes;
