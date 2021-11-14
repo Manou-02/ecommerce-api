@@ -71,7 +71,14 @@ module.exports.login = async (req, res, next) => {
  * @param {*} next 
  */
 module.exports.logout = async (req, res, next) => {
-
+    const userId = req.user
+    
+    try{
+        const token = jwt.sign({id : userId}, process.env.TOKEN_SECRET, {expiresIn : '-1s'})
+        if(token)return res.header("auth-token", "").json({success : "Logout"})
+    }catch(err){
+        console.log(err);
+    }
 }
 
 /****Fin Auth */

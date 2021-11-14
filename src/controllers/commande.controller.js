@@ -32,7 +32,7 @@ module.exports.createCommande = async (req, res, next) => {
     try{
         await Commande.create({client, panier}).then(docs => {
             Commande.findOne({_id : docs._id}).populate('panier.ligneCommande.produit').then(data => {
-                sendEmail(client, panier);
+                sendEmail(data);
                 res.status(200).json({commande : data})
             })
         }).catch(err => {

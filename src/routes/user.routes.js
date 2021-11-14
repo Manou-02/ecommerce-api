@@ -9,7 +9,7 @@ const authorization = require('../../middleware/authorization');
 
 routes.post('/signin', signin);
 routes.post('/login', login);
-routes.post('/logout',logout);
+routes.post('/logout', authorization ,logout);
 
 
 routes.get('/', authorization , getAllUser);

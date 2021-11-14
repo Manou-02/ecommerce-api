@@ -19,7 +19,7 @@ const DB_URI_LOCAL = process.env.DB_URI_LOCAL;
 /**Middleware */
 app.use(express.json())
 app.use(cors())
-app.use('./public/uploads', express.static('./public/uploads'));
+app.use('/public/uploads',express.static('./public/uploads'));
 
 /**Les routes */
 app.use('/api/category', categoryRoutes);
